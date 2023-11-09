@@ -13,7 +13,7 @@ public class LevelManager : MonoBehaviour
 
     public Button[] buttons;
 
-
+    
 
 
     // Start is called before the first frame update
@@ -45,6 +45,7 @@ public class LevelManager : MonoBehaviour
     { 
       SceneManager.LoadScene("Level1");
         Time.timeScale = 1f;
+        
     }
     public void Level2()
 

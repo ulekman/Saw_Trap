@@ -6,31 +6,32 @@ using UnityEngine;
 
 public class BallGyro : MonoBehaviour
 {
-    public float hiz = 100f; // Topun hareket hýzý
 
-    void Update()
+    private Rigidbody rb;
+    public float moveSpeed = 2.0f; 
+
+    private void Start()
     {
-        // Telefonun gyroscope verilerini al
-        Vector3 gyroscopeVeri = Input.gyro.rotationRateUnbiased;
-
-        // Hareket vektörünü oluþtur
-        Vector3 hareket = new Vector3(0, 0, gyroscopeVeri.y);
-
-        // Hareketi düzgünleþtir ve hýzla çarp
-        hareket = hareket.normalized * hiz * Time.deltaTime;
-
-        // Rigidbody bileþeni varsa, fizik tabanlý hareket için kullan
-        Rigidbody rb = GetComponent<Rigidbody>();
-        if (rb != null)
-        {
-            rb.AddForce(hareket);
-        }
-        else
-        {
-            // Rigidbody bileþeni yoksa, doðrudan transform ile hareket ettir
-            transform.Translate(hareket);
-        }
+        rb = GetComponent<Rigidbody>();
     }
+
+    private void Update()
+    {
+        
+        float moveX = Input.acceleration.x;
+        float moveZ = Input.acceleration.y;
+
+        
+        Vector3 movement = new Vector3(-moveX, 0.0f, -moveZ);
+
+        
+       // movement.Normalize();
+        //movement *= moveSpeed;
+
+        
+        rb.AddForce(movement * moveSpeed);
+    }
+
 }
 
 

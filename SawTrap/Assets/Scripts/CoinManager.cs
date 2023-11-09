@@ -30,7 +30,7 @@ public class CoinManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        coinHolder = PlayerPrefs.GetInt("coinHolder", coinAmount);
+        coinHolder = PlayerPrefs.GetInt("coinHolder");
         coinHolderText.text = coinHolder.ToString();
     }
 
@@ -82,6 +82,6 @@ public class CoinManager : MonoBehaviour
         coinHolder += coinAmount;
         coinHolderText.text = coinHolder.ToString();
         takeCoinButton.interactable = false;
-        PlayerPrefs.SetInt("coinHolder", coinAmount);
+        PlayerPrefs.SetInt("coinHolder", coinHolder);
     }
 }

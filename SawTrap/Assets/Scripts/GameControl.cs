@@ -16,7 +16,7 @@ public class GameControl : MonoBehaviour
     ParticleSystem pop;
     public float disableDelay = 2f;
 
-    public CustomizeControl customizeControl = new CustomizeControl();
+    
 
    
    
