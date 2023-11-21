@@ -9,12 +9,15 @@ public class CustomizeManager : MonoBehaviour
     public Button NextButton;
     public Button PreviousButton;
     public Button buyButton;
-
+    
 
     public int currentIndex;
     public GameObject[] balls;
 
     public BallBlueprint[] ballsToBuy;
+
+    public TextMeshProUGUI coinHolderText;
+    int coinHolder;
 
     // Start is called before the first frame update
     void Start()
@@ -28,7 +31,7 @@ public class CustomizeManager : MonoBehaviour
             }
             else
             {
-                ballToBuy.isUnlocked = PlayerPrefs.GetInt(ballToBuy.name, 12) == 0 ? false : true;
+                ballToBuy.isUnlocked = PlayerPrefs.GetInt(ballToBuy.name, 0) == 0 ? false : true;
             }
 
 
@@ -114,7 +117,7 @@ public class CustomizeManager : MonoBehaviour
 
             buyButton.GetComponentInChildren<TextMeshProUGUI>().text = "Buy -" + b.price;
 
-            if (b.price < PlayerPrefs.GetInt("CoinHolder", 0))
+            if (b.price < PlayerPrefs.GetInt("coinHolder", 0))
             {
                 buyButton.interactable = true;
             }
@@ -135,6 +138,9 @@ public class CustomizeManager : MonoBehaviour
         PlayerPrefs.SetInt(b.name, 1);
         PlayerPrefs.SetInt("SelectedBall", currentIndex);
         b.isUnlocked = true;
-        PlayerPrefs.SetInt("CoinHolder", PlayerPrefs.GetInt("CoinHolder", 0)-b.price);
+        PlayerPrefs.SetInt("coinHolder", PlayerPrefs.GetInt("coinHolder", 0)-b.price);
+
+        coinHolder = PlayerPrefs.GetInt("coinHolder");
+        coinHolderText.text = coinHolder.ToString();
     }
 }

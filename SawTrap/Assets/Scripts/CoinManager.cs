@@ -19,6 +19,8 @@ public class CoinManager : MonoBehaviour
 
     
 
+    
+
     int coinHolder;
     int coinAmount = 0;
 
